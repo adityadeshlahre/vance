@@ -1,15 +1,6 @@
 import { Request, Response } from 'express';
 import { scrapeHistoricalData } from './../service/scraperService';
-import { prisma } from '@repo/db/prisma';
-
-interface HistoricalData {
-  date: string | null;
-  open: number | null;
-  high: number | null;
-  low: number | null;
-  close: number | null;
-  volume: number | null;
-}
+import { HistoricalData, historicalDataStore } from './../store/dataStore';
 
 export const scrapeYahooFinance = async (req: Request, res: Response) => {
   const { quote, from, to } = req.query;
@@ -26,26 +17,26 @@ export const scrapeYahooFinance = async (req: Request, res: Response) => {
     );
 
     console.log(data);
+    const key: string = String(quote);
+    if (!historicalDataStore[key]) {
+      historicalDataStore[key] = [];
+    }
 
-    const insertPromises = data.map((item: HistoricalData) => {
+    //@ts-expect-error : void error
+    data.forEach((item: HistoricalData) => {
       const formattedDate = item.date
-        ? Math.floor(new Date(Date.parse(item.date)).getTime() / 1000)
-        : null;
+        ? Math.floor(new Date(item.date).getTime() / 1000)
+        : null; //    item.date = 'May 8, 2024' -----> 1727202600 this should be saved something like this
 
-      return prisma.historicalData.create({
-        data: {
-          date: formattedDate || null,
-          open: item.open,
-          high: item.high,
-          low: item.low,
-          close: item.close,
-          volume: item.volume !== null ? item.volume : 0,
-          currencyPair: quote as string,
-        },
+      historicalDataStore[key]?.push({
+        date: formattedDate || null,
+        open: item.open,
+        high: item.high,
+        low: item.low,
+        close: item.close,
+        volume: item.volume !== null ? item.volume : 0,
       });
     });
-
-    await Promise.all(insertPromises);
 
     res.status(200).json({ message: 'Data scraped and saved successfully' });
   } catch (error) {

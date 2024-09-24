@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { prisma } from '@repo/db';
 import { getPeriodTimestamps } from './../utils/getPeriodTimestamps';
+import { historicalDataStore } from './../store/dataStore';
 
 interface ForexDataRequest {
   from: string;
@@ -22,15 +22,12 @@ export const scrapeForexData = async (
     const { from: startDate, to: endDate } = getPeriodTimestamps(period);
     console.log(startDate, endDate);
 
-    const historicalData = await prisma.historicalData.findMany({
-      where: {
-        currencyPair: `${from}${to}`,
-        date: {
-          gte: startDate,
-          lte: endDate,
-        },
-      },
-    });
+    const historicalData =
+      historicalDataStore[`${from}${to}`]?.filter((data) => {
+        return (
+          data.date !== null && data.date >= startDate && data.date <= endDate
+        );
+      }) || [];
 
     if (historicalData.length === 0) {
       return res

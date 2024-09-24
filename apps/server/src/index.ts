@@ -12,17 +12,6 @@ const port = process.env.PORT;
 app.use(cors());
 app.use(bodyParser.json());
 
-interface HistoricalData {
-  date: string | null;
-  open: number | null;
-  high: number | null;
-  low: number | null;
-  close: number | null;
-  volume: number | null;
-}
-
-export const forexDataStore: { [key: string]: HistoricalData[] } = {};
-
 app.get('/', (req: Request, res: Response) => {
   res.json({ message: 'Hello World!' });
 });
