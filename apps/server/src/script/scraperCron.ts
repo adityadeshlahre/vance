@@ -46,9 +46,18 @@ const triggerScraping = async () => {
   }
 };
 
+// '0 0 * * *'
 cron.schedule('0 0 * * *', () => {
   console.log('Triggering scraping job...');
   triggerScraping()
     .then(() => console.log('Scraping job completed.'))
     .catch((error) => console.error('Error in scraping job:', error));
 });
+
+// const runTest = async () => {
+//   console.log("Triggering scraping job immediately for testing...");
+//   await triggerScraping();
+//   console.log("runtest : Scraping job completed.");
+// };
+
+// runTest();

@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "339fb8b6-b805-489c-b2c4-7a1fba9d00a0",
+		"name": "vance",
+		"description": "This collection containe API for the assignment given by vance.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28045958"
+	},
+	"item": [
+		{
+			"name": "local",
+			"item": [
+				{
+					"name": "getT1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/scrape?quote=GBPINR&from=1711909800&to=1727202600",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"scrape"
+							],
+							"query": [
+								{
+									"key": "quote",
+									"value": "GBPINR"
+								},
+								{
+									"key": "from",
+									"value": "1711909800"
+								},
+								{
+									"key": "to",
+									"value": "1727202600"
+								}
+							]
+						},
+						"description": "### GET /scrape\n\nThis API Endpoint (GET Request) fetches the data from YAHOO Finance WebSite and set it Database.\n\n#### Request\n\n- Parameters\n    \n    - quote (string, required): The quote for which data needs to be retrieved.\n        \n    - from (integer, required): The start timestamp for the data retrieval.\n        \n    - to (integer, required): The end timestamp for the data retrieval.\n        \n\n#### Response\n\nThe response for this request is a JSON object with the following schema:\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"message\": {\n            \"type\": \"string\"\n        }\n    }\n}\n\n ```\n\n- message (string): A message returned by the API."
+					},
+					"response": [
+						{
+							"name": "response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/scrape?quote=GBPINR&from=1711909800&to=1727202600",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scrape"
+									],
+									"query": [
+										{
+											"key": "quote",
+											"value": "GBPINR"
+										},
+										{
+											"key": "from",
+											"value": "1711909800"
+										},
+										{
+											"key": "to",
+											"value": "1727202600"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-KGkX81ZjjcCqaK5Cn5RQzLdiYhA\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 24 Sep 2024 02:08:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Data scraped and saved successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "postFOREXDataT2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"from\":\"GBP\", \n    \"to\":\"INR\", \n    \"period\":\"1W\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/scrape/forex-data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"scrape",
+								"forex-data"
+							]
+						},
+						"description": "### POST /scrape/forex-data\n\nThis API is POST request to get data of specific SET of FOREX Change as Response.\n\n#### Request Body\n\n- `from` (string, required): The start date for the forex data.\n    \n- `to` (string, required): The end date for the forex data.\n    \n- `period` (string, required): The time period for the forex data.\n    \n\n#### Response\n\nThe response is a JSON array containing forex data objects with the following properties:\n\n- `id` (number): The unique identifier for the forex data.\n    \n- `date` (number): The date of the forex data.\n    \n- `open` (number): The opening price of the forex data.\n    \n- `high` (number): The highest price of the forex data.\n    \n- `low` (number): The lowest price of the forex data.\n    \n- `close` (number): The closing price of the forex data.\n    \n- `volume` (number): The volume of the forex data.\n    \n- `currencyPair` (string): The currency pair for the forex data.\n    \n\n#### Example Response\n\n``` json\n[\n  {\n    \"id\": 0,\n    \"date\": 0,\n    \"open\": 0,\n    \"high\": 0,\n    \"low\": 0,\n    \"close\": 0,\n    \"volume\": 0,\n    \"currencyPair\": \"\"\n  }\n]\n\n ```"
+					},
+					"response": [
+						{
+							"name": "response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"from\":\"GBP\", \n    \"to\":\"INR\", \n    \"period\":\"1W\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/scrape/forex-data",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"scrape",
+										"forex-data"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "10234"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27fa-pLRDHH+BJm5JkqPwzdJWxYCs9rM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 24 Sep 2024 02:13:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 673,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.5214,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 674,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 675,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 676,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1838,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 678,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 679,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.4798,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1463,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.4798,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 680,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 812,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1421,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 681,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 686,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.4798,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 957,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 714,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1588,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 683,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 690,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 813,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 684,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 713,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 986,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1417,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.4798,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1595,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 809,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 958,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 977,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 735,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 819,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.4798,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1415,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1594,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 996,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1426,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1461,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1584,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.4798,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 736,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 960,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 723,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 732,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 805,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 811,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 959,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 967,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.4798,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1004,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 725,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.4798,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 961,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.4798,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1420,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1462,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1486,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1501,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1587,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1823,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.4798,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1824,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1825,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 1827,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3000,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.4798,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 2998,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3265,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3276,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3003,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3004,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3031,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3284,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3291,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3016,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.4798,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 2999,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3288,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3197,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.4798,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3002,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3013,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3038,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3293,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5214,\n        \"low\": 111.4294,\n        \"close\": 111.4402,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3204,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3273,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 3194,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 546,\n        \"date\": 1727116200,\n        \"open\": 111.4674,\n        \"high\": 111.5157,\n        \"low\": 111.4294,\n        \"close\": 111.4701,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 549,\n        \"date\": 1726597800,\n        \"open\": 110.2919,\n        \"high\": 110.9687,\n        \"low\": 110.1316,\n        \"close\": 110.2919,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 550,\n        \"date\": 1727029800,\n        \"open\": 111.2005,\n        \"high\": 111.6,\n        \"low\": 110.7061,\n        \"close\": 111.2005,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 552,\n        \"date\": 1726684200,\n        \"open\": 110.4615,\n        \"high\": 111.3433,\n        \"low\": 110.1474,\n        \"close\": 110.4615,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    },\n    {\n        \"id\": 563,\n        \"date\": 1726770600,\n        \"open\": 111.0356,\n        \"high\": 111.4309,\n        \"low\": 110.8103,\n        \"close\": 111.0356,\n        \"volume\": 0,\n        \"currencyPair\": \"GBPINR\"\n    }\n]"
+						}
+					]
+				}
+			],
+			"description": "This is API Folder is for testing things locally."
+		}
+	]
+}
