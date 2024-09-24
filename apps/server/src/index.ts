@@ -3,15 +3,32 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { User, UserSchema } from '@repo/types';
 import { prisma } from '@repo/db';
+import { scrapeYahooFinance } from './controllers/scraperController';
+import { scrapeForexData } from './controllers/scraperForexDataController';
+import './script/scraperCron'; 
 
 const app = express();
 const port = process.env.PORT;
 app.use(cors());
 app.use(bodyParser.json());
 
+interface HistoricalData {
+  date: string | null;
+  open: number | null;
+  high: number | null;
+  low: number | null;
+  close: number | null;
+  volume: number | null;
+}
+
+export const forexDataStore: { [key: string]: HistoricalData[] } = {};
+
 app.get('/', (req: Request, res: Response) => {
   res.json({ message: 'Hello World!' });
 });
+
+app.get('/scrape', scrapeYahooFinance);
+app.post('/scrape/forex-data', scrapeForexData);
 
 app.post('/user', async (req: Request, res: Response) => {
   const parsed = UserSchema.safeParse(req.body);

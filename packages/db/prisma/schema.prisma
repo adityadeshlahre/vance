@@ -19,3 +19,14 @@ model User {
   email    String @unique
   password String
 }
+
+model HistoricalData {
+  id           Int      @id @default(autoincrement())
+  date         Float?
+  open         Float?
+  high         Float?
+  low          Float?
+  close        Float?
+  volume       Float?
+  currencyPair String
+}
