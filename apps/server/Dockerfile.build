@@ -18,7 +18,22 @@ ENV PATH="${PATH}:${PNPM_HOME}"
 
 RUN npm install --global pnpm@latest 
 
-RUN pnpm add -g turbo nodemon dotenv dotenv-cli
+RUN pnpm add -g turbo nodemon dotenv dotenv-cli puppeteer
+
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    freetype-dev \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont \
+    fontconfig \
+    dbus
+
+# Set Puppeteer to not skip the Chromium download
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=false \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 WORKDIR /app
 
@@ -40,7 +55,22 @@ ENV PATH="${PATH}:${PNPM_HOME}"
 
 RUN npm install --global pnpm@latest
 
-RUN pnpm add -g turbo concurrently nodemon dotenv dotenv-cli prisma
+RUN pnpm add -g turbo concurrently nodemon dotenv dotenv-cli prisma puppeteer
+
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    freetype-dev \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont \
+    fontconfig \
+    dbus
+
+# Set Puppeteer to not skip the Chromium download
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=false \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 WORKDIR /app
 

@@ -18,7 +18,7 @@ ENV PATH="${PATH}:${PNPM_HOME}"
 
 RUN npm install --global pnpm@latest 
 
-RUN pnpm add -g turbo nodemon dotenv dotenv-cli
+RUN pnpm add -g turbo nodemon dotenv dotenv-cli puppeteer
 
 WORKDIR /app
 
@@ -40,7 +40,7 @@ ENV PATH="${PATH}:${PNPM_HOME}"
 
 RUN npm install --global pnpm@latest
 
-RUN pnpm add -g nodemon dotenv dotenv-cli
+RUN pnpm add -g nodemon dotenv dotenv-cli puppeteer
 
 WORKDIR /app
 
